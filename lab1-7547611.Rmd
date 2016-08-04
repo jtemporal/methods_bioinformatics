@@ -5,6 +5,57 @@ date: "August 4, 2016"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+Download alon.txt:
+https://drive.google.com/open?id=0B0-8N2fjttG-Xy1sQUNRREk2RUk
+and read `alon.txt` data
+```{r setup, echo=TRUE}
+
+```
+
+Often in R, our data frames are read in with the gene names as a data column,
+instead of a row name.  By doing the previous step, we are removing the gene
+names from a data column and setting them to the row names. (Hint: use
+dimnames(x)[[1]] on the left side of the assignment and cast the first column to
+character (as.character()) prior to setting the row names).
+
+Setting the row names to the first column, then removing this first column.
+```{r, echo=TRUE}
+
+```
+
+There should be 62 samples. If you have 63 samples, you still have the row names
+in the first data column. Looking at the dimensions of the data.
+```{r, echo=TRUE}
+
+```
+
+Print the sample names to screen.
+```{r, echo=TRUE}
+
+```
+
+Plotting one of the tumor samples versus one of the normal samples in an xy
+scatter plot.
+Remember that the first argument is the x vector.
+Label the x and y-axes as 'normal' and 'tumor', respectively.
+Title the plot, 'Tumor sample vs. Normal sample - 2000 genes'.
+```{r, echo=TRUE}
+
+```
+
+Now do the same with 2 normal samples, adjusting the axes labels and title, but
+pick only 20 genes.
+```{r, echo=TRUE}
+
+```
+
+Add a line to connect the points
+```{r, echo=TRUE}
+
+```
+
+Take the ratio of gene 5 to gene 15 and plot the profile of the gene across all
+samples. Label each point with the sample name (see text() help and use cex=1).
+```{r, echo=TRUE}
+
 ```
