@@ -42,7 +42,8 @@ Remember that the first argument is the x vector.
 Label the x and y-axes as 'normal' and 'tumor', respectively.
 Title the plot, 'Tumor sample vs. Normal sample - 2000 genes'.
 ```{r, echo=TRUE}
-
+plot(alon.data$norm1, alon.data$tumor1, xlab = "normal", ylab = "tumor",
+     main = "Tumor sample vs. Normal sample - 2000 genes")
 ```
 
 Now do the same with 2 normal samples, adjusting the axes labels and title, but
