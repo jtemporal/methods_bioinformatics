@@ -21,7 +21,8 @@ character (as.character()) prior to setting the row names).
 
 Setting the row names to the first column, then removing this first column.
 ```{r, echo=TRUE}
-
+rownames(alon.data) <- as.character(alon.data[,1])
+alon.data$Gene <- NULL
 ```
 
 There should be 62 samples. If you have 63 samples, you still have the row names
