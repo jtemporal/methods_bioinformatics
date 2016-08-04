@@ -57,6 +57,8 @@ plot(norm1and2, tumor1an2, xlab = "normal", ylab = "tumor",
 
 Add a line to connect the points
 ```{r, echo=TRUE}
+plot(norm1and2, tumor1an2, xlab = "normal", ylab = "tumor",
+     main = "Tumor sample vs. Normal sample - 20 genes")
 lines(norm1and2, tumor1an2)
 ```
 
