@@ -9,7 +9,8 @@ Download alon.txt:
 https://drive.google.com/open?id=0B0-8N2fjttG-Xy1sQUNRREk2RUk
 and read `alon.txt` data
 ```{r setup, echo=TRUE}
-
+alon.data = read.table("~/Documents/methods_bioinformatics/data/lab1/alon.txt",
+                       header = T)
 ```
 
 Often in R, our data frames are read in with the gene names as a data column,
