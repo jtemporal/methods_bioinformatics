@@ -65,5 +65,7 @@ lines(norm1and2, tumor1an2)
 Take the ratio of gene 5 to gene 15 and plot the profile of the gene across all
 samples. Label each point with the sample name (see text() help and use cex=1).
 ```{r, echo=TRUE}
-
+ratio5and15 <- alon.data[5,]/alon.data[15,]
+plot(1:62, ratio5and15, xlab = "samples", main = "Gene profile across samples")
+text(1:62, ratio5and15, labels = names(alon.data), cex = 1)
 ```
