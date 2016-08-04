@@ -1,0 +1,10 @@
+---
+title: "Lab1"
+author: "Jessica Temporal"
+date: "August 4, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
