@@ -1,3 +1,4 @@
 # vim stuff
 *.swp
 .Rproj.user
+*.Rproj
