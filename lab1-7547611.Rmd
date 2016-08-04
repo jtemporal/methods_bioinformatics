@@ -33,7 +33,7 @@ dim(alon.data)
 
 Print the sample names to screen.
 ```{r, echo=TRUE}
-
+names(alon.data)
 ```
 
 Plotting one of the tumor samples versus one of the normal samples in an xy
