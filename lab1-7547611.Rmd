@@ -28,7 +28,7 @@ alon.data$Gene <- NULL
 There should be 62 samples. If you have 63 samples, you still have the row names
 in the first data column. Looking at the dimensions of the data.
 ```{r, echo=TRUE}
-
+dim(alon.data)
 ```
 
 Print the sample names to screen.
