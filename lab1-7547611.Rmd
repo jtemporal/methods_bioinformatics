@@ -49,7 +49,10 @@ plot(alon.data$norm1, alon.data$tumor1, xlab = "normal", ylab = "tumor",
 Now do the same with 2 normal samples, adjusting the axes labels and title, but
 pick only 20 genes.
 ```{r, echo=TRUE}
-
+norm1and2 = cbind(alon.data$norm1[1:20], alon.data$norm2[1:20])
+tumor1an2 = cbind(alon.data$tumor1[1:20], alon.data$tumor2[1:20])
+plot(norm1and2, tumor1an2, xlab = "normal", ylab = "tumor",
+     main = "Tumor sample vs. Normal sample - 20 genes")
 ```
 
 Add a line to connect the points
