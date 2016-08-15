@@ -9,7 +9,8 @@ output: html_document
 the first column values (Affymetrix fragment names) and remove the first column.
 Look at the dimensions and verify that you have 38 arrays and 7,129 genes.
 ```{r}
-
+file <- "golubTrain.txt"
+golub_train_data <- read.table(file, header = T)
 ```
 
 2)Download and load the 3 class annotation file for this data set into R
