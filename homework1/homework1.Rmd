@@ -11,6 +11,9 @@ Look at the dimensions and verify that you have 38 arrays and 7,129 genes.
 ```{r}
 file <- "golubTrain.txt"
 golub_train_data <- read.table(file, header = T)
+rownames(golub_train_data) <- as.character(golub_train_data[,1])
+golub_train_data$Gene <- NULL
+dim(golub_train_data)
 ```
 
 2)Download and load the 3 class annotation file for this data set into R
