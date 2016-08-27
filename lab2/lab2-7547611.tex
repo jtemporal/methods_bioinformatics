@@ -1,0 +1,288 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\hypersetup{unicode=true,
+            pdftitle={Lab2},
+            pdfauthor={Jessica Temporal 7547611},
+            pdfsubject={Data visualization},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Lab2}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+\subtitle{Data visualization}
+  \author{Jessica Temporal 7547611}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{August 27, 2016}
+
+
+
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\newpage
+
+\subsubsection{1. Use the Spellman yeast cell cycle dataset
+(spellman.txt).}\label{use-the-spellman-yeast-cell-cycle-dataset-spellman.txt.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{file <-}\StringTok{ "spellman.txt"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{2. a) Read into R (Hint: using the
+read.table() function with a ``header'' argument is one method to do
+this).}{2. a) Read into R (Hint: using the read.table() function with a header argument is one method to do this).}}\label{a-read-into-r-hint-using-the-read.table-function-with-a-header-argument-is-one-method-to-do-this.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spellman_data <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(file, }\DataTypeTok{header =} \NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{2. b) Set the row names to the first column, then remove
+this first
+column.}\label{b-set-the-row-names-to-the-first-column-then-remove-this-first-column.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rownames}\NormalTok{(spellman_data) <-}\StringTok{ }\NormalTok{spellman_data$row.names}
+\NormalTok{spellman_data$row.names <-}\StringTok{ }\OtherTok{NULL}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3. a) Look at the dimensions of the data frame and make
+sure that there are 6,178 genes and 77
+arrays/sample.}\label{a-look-at-the-dimensions-of-the-data-frame-and-make-sure-that-there-are-6178-genes-and-77-arrayssample.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(spellman_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6178   77
+\end{verbatim}
+
+\newpage
+
+\subsubsection{3. b) Isolate only the cdc15 experiment (samples 23-46),
+pick a gene with some missing values (I use gene \#2/YAL002W in the
+solutions), and impute with the row mean (save as
+something).}\label{b-isolate-only-the-cdc15-experiment-samples-23-46-pick-a-gene-with-some-missing-values-i-use-gene-2yal002w-in-the-solutions-and-impute-with-the-row-mean-save-as-something.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cdc15 <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(spellman_data, }\DataTypeTok{select =} \KeywordTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{:}\DecValTok{46}\NormalTok{))}
+\NormalTok{cdc15[}\StringTok{"YAL004W"}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         cdc15_10 cdc15_30 cdc15_50 cdc15_70 cdc15_80 cdc15_90 cdc15_100
+## YAL004W       NA       NA       NA     -1.5    -0.03     -1.2     -0.06
+##         cdc15_110 cdc15_120 cdc15_130 cdc15_140 cdc15_150 cdc15_160
+## YAL004W     -1.78      0.14     -1.13     -0.13     -1.27     -0.27
+##         cdc15_170 cdc15_180 cdc15_190 cdc15_200 cdc15_210 cdc15_220
+## YAL004W     -0.94      0.14        NA      1.04      0.48      1.94
+##         cdc15_230 cdc15_240 cdc15_250 cdc15_270 cdc15_290
+## YAL004W      1.62      1.73      1.22        NA        NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{yal004w_mean <-}\StringTok{ }\KeywordTok{rowMeans}\NormalTok{(cdc15[}\StringTok{"YAL004W"}\NormalTok{,], }\DataTypeTok{na.rm =} \NormalTok{T)}
+\NormalTok{yal004w_mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      YAL004W 
+## 1.079383e-17
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{for (x in }\DecValTok{1}\NormalTok{:}\KeywordTok{length}\NormalTok{(cdc15[}\StringTok{"YAL004W"}\NormalTok{,])) \{}
+    \NormalTok{if (}\KeywordTok{is.na}\NormalTok{(cdc15[}\StringTok{"YAL004W"}\NormalTok{,x])) \{}
+        \NormalTok{cdc15[}\StringTok{"YAL004W"}\NormalTok{,x] <-}\StringTok{ }\NormalTok{yal004w_mean}
+    \NormalTok{\}}
+\NormalTok{\}}
+\NormalTok{yal <-}\StringTok{ }\NormalTok{cdc15[}\StringTok{"YAL004W"}\NormalTok{,]}
+\NormalTok{yal}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             cdc15_10     cdc15_30     cdc15_50 cdc15_70 cdc15_80 cdc15_90
+## YAL004W 1.079383e-17 1.079383e-17 1.079383e-17     -1.5    -0.03     -1.2
+##         cdc15_100 cdc15_110 cdc15_120 cdc15_130 cdc15_140 cdc15_150
+## YAL004W     -0.06     -1.78      0.14     -1.13     -0.13     -1.27
+##         cdc15_160 cdc15_170 cdc15_180    cdc15_190 cdc15_200 cdc15_210
+## YAL004W     -0.27     -0.94      0.14 1.079383e-17      1.04      0.48
+##         cdc15_220 cdc15_230 cdc15_240 cdc15_250    cdc15_270    cdc15_290
+## YAL004W      1.94      1.62      1.73      1.22 1.079383e-17 1.079383e-17
+\end{verbatim}
+
+\newpage
+
+\subsubsection{4. Look up the functions for boxplot and hist and plot
+the gene. Color the plots red and title them. Make sure that the vector
+is numeric
+(as.numeric).}\label{look-up-the-functions-for-boxplot-and-hist-and-plot-the-gene.-color-the-plots-red-and-title-them.-make-sure-that-the-vector-is-numeric-as.numeric.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(yal), }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Boxplot - Gene YAL004W"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{lab2-7547611_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(yal), }\DataTypeTok{freq =} \NormalTok{T, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{,}
+    \DataTypeTok{main =} \StringTok{"Hist - Gene YAL004W"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{""}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{lab2-7547611_files/figure-latex/unnamed-chunk-6-2.pdf}
+\newpage
+
+\subsubsection{5. Generate a profile plot of the same gene. Title the
+plot. Use lwd in the plot command (lwd=line
+width).}\label{generate-a-profile-plot-of-the-same-gene.-title-the-plot.-use-lwd-in-the-plot-command-lwdline-width.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}
+    \DataTypeTok{x =} \DecValTok{1}\NormalTok{:}\KeywordTok{length}\NormalTok{(yal),}
+    \DataTypeTok{y =} \KeywordTok{as.numeric}\NormalTok{(yal),}
+    \DataTypeTok{type =} \StringTok{"o"}\NormalTok{,}
+    \DataTypeTok{lwd =} \DecValTok{1}\NormalTok{,}
+    \DataTypeTok{main =} \StringTok{"Profile of YAL004W"}\NormalTok{,}
+    \DataTypeTok{col =} \StringTok{"red"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{""}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{""}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{lab2-7547611_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\end{document}
