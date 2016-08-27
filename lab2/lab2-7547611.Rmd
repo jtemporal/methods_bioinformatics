@@ -12,8 +12,7 @@ output:
     toc: yes
     toc_depth: 3
   html_document:
-    toc: yes
-header-includes: \usepackage{multicol}
+    toc: no
 ---
 \newpage
 
