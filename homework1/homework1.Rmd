@@ -46,38 +46,40 @@ names(golub_df) <- class_data[,1]
 
 5) Subset the data by the first 100 genes.
 ```{r}
-
+golub_sub <- golub_df[1:100,]
 ```
 
 6) When utilizing only the first 100 genes, there exists one aberrant outlier
-sample.  Identify this outlier sample using the following visual plots:
+sample. Identify this outlier sample using the following visual plots:
+
+6.1) Correlation plot (heat map)
 ```{r}
 
 ```
 
-7) Correlation plot (heat map)
+6.2) Hierarchical clustering dendrogram
 ```{r}
 
 ```
 
-Hierarchical clustering dendrogram
+6.3) CV vs. mean plot
+```{r}
 
-CV vs. mean plot
+```
 
-
-8) Now download and load the Spellman yeast data set.  Remember to set the row
+7) Now download and load the Spellman yeast data set.  Remember to set the row
 names to the first column as you did before with the leukemia dataset.
 ```{r}
 
 ```
 
-9) Cast the data to a data frame and subset to only work with the cdc28
+8) Cast the data to a data frame and subset to only work with the cdc28
 experiment samples.
 ```{r}
 
 ```
 
-10) Use both the function and call to the function below to fill all “NA” values
+9) Use both the function and call to the function below to fill all “NA” values
 with the computed row means.
 ```{r}
 miss.fill <- function(x) {
@@ -95,20 +97,20 @@ dat.fill <- round(dat.fill,2)
 dat<-dat.fill
 ```
 
-11) Calculate the kmeans clustering method on all 6,178 genes, using 10 cluster
+10) Calculate the kmeans clustering method on all 6,178 genes, using 10 cluster
 centers and 100 iterations.
 ```{r}
 
 ```
 
-12) Look for gene #2 (YAL002W) and find the cluster that it belongs to.  Using
+11) Look for gene #2 (YAL002W) and find the cluster that it belongs to.  Using
 these genes, calculate the distance from each gene to gene #2 (use manhattan
 distance in dist() function)
 ```{r}
 
 ```
 
-13) Cast the distance object to a matrix and get the column that gene #2
+12) Cast the distance object to a matrix and get the column that gene #2
 corresponds to.  Hint: If gene #2 is in column #1 of your matrix, get the
 corresponding cluster member distances with:
  `gene.dist <- gene.dist[2:nrow(gene.dist),1] `
@@ -119,7 +121,7 @@ distances with:
 
 ```
 
-14) Get the weights of each gene as a percentage of the sum of distance values.
+13) Get the weights of each gene as a percentage of the sum of distance values.
 Assuming that the first array (cdc28_0) is missing a value for gene #2,
 calculate the weighted mean from the gene weight vector for this missing value.
 Print out this weighted mean value.
