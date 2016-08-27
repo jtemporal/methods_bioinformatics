@@ -18,17 +18,18 @@ output:
 
 ### 1. Use the Spellman yeast cell cycle dataset (spellman.txt).
 ```{r}
-
+file <- "spellman.txt"
 ```
 
 ### 2. a) Read into R (Hint: using the read.table() function with a “header” argument is one method to do this).
 ```{r}
-
+spellman_data <- read.table(file, header = T)
 ```
 
 ### 2. b) Set the row names to the first column, then remove this first column.
 ```{r}
-
+rownames(spellman_data) <- spellman_data$row.names
+spellman_data$row.names <- NULL
 ```
 
 ### 3. a) Look at the dimensions of the data frame and make sure that there are 6,178 genes and 77 arrays/sample.
