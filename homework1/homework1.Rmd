@@ -7,7 +7,7 @@ date: "August 15, 2016"
 output:
   pdf_document:
     toc: yes
-    toc_depth: 2
+    toc_depth: 3
     keep_tex: yes
   html_document:
     toc: no
@@ -60,6 +60,7 @@ golub_dist <- dist(t(golub_sub))
 golub_hclust <- hclust(golub_dist)
 plot(golub_hclust, main = "Hierarchical dendrogram - Golub Data", labels = c(1:38))
 ```
+\newpage
 
 ### 6.3) CV vs. mean plot
 ```{r}
