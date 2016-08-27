@@ -19,29 +19,29 @@ the first column values (Affymetrix fragment names) and remove the first column.
 Look at the dimensions and verify that you have 38 arrays and 7,129 genes.
 ```{r}
 file <- "golubTrain.txt"
-golub_train_data <- read.table(file, header = T)
-rownames(golub_train_data) <- as.character(golub_train_data[,1])
-golub_train_data$Gene <- NULL
-dim(golub_train_data)
+golub_data <- read.table(file, header = T)
+rownames(golub_data) <- as.character(golub_data[,1])
+golub_data$Gene <- NULL
+dim(golub_data)
 ```
 
 2) Download and load the 3 class annotation file (golubTrainClass2.txt) for this
 data set into R.
 ```{r}
-file <- "golubTrainClass2.txt"
-train_class_data <- read.table(file, header = T)
+file2 <- "golubTrainClass2.txt"
+class_data <- read.table(file2)
 ```
 
 3) Cast the data to a data frame.
 ```{r}
-train_class_data_df <- as.data.frame(train_class_data)
+golub_df <- as.data.frame(golub_data)
 ```
 
 4) Make the names of the data frame the annotation file labels (remember that
 depending on how you read in the annotation file, it may be a dataframe with 1
 column.
 ```{r}
-
+names(golub_df) <- class_data[,1]
 ```
 
 5) Subset the data by the first 100 genes.
