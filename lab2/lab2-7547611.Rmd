@@ -34,12 +34,18 @@ spellman_data$row.names <- NULL
 
 ### 3. a) Look at the dimensions of the data frame and make sure that there are 6,178 genes and 77 arrays/sample.
 ```{r}
-
+dim(spellman_data)
 ```
 
 ### 3. b) Isolate only the cdc15 experiment (samples 23-46), pick a gene with some missing values (I use gene #2/YAL002W in the solutions), and impute with the row mean (save as something).
 ```{r}
-
+cdc15 <- subset(spellman_data, select = c(23:46))
+yal004w <- rowMeans(cdc15["YAL004W",], na.rm = T)
+for (x in 1:length(cdc15['YAL004W',])) {
+    if (is.na(cdc15['YAL004W',x])) {
+        cdc15['YAL004W',x] <- yal004w
+    }
+}
 ```
 
 ### 4. Look up the functions for boxplot and hist and plot the gene. Color the plots red and title them. Make sure that the vector is numeric (as.numeric).
