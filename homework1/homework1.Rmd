@@ -1,9 +1,18 @@
 ---
-title: "homework1"
-author: "Jessica Temporal"
+title: "Homework 1"
+
+author: "Jessica Temporal 7547611"
+
 date: "August 15, 2016"
-output: html_document
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+    keep_tex: yes
+  html_document:
+    toc: no
 ---
+\newpage
 
 1) Load the Golub ALL/AML training set data file into R. Set the row names to
 the first column values (Affymetrix fragment names) and remove the first column.
