@@ -25,14 +25,16 @@ golub_train_data$Gene <- NULL
 dim(golub_train_data)
 ```
 
-2)Download and load the 3 class annotation file for this data set into R
+2) Download and load the 3 class annotation file (golubTrainClass2.txt) for this
+data set into R.
 ```{r}
-
+file <- "golubTrainClass2.txt"
+train_class_data <- read.table(file, header = T)
 ```
 
 3) Cast the data to a data frame.
 ```{r}
-
+train_class_data_df <- as.data.frame(train_class_data)
 ```
 
 4) Make the names of the data frame the annotation file labels (remember that
