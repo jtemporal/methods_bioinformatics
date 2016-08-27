@@ -1,0 +1,53 @@
+---
+title: "Lab2"
+
+subtitle: "Data visualization"
+
+author: "Jessica Temporal 7547611"
+
+date: "August 27, 2016"
+
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+  html_document:
+    toc: yes
+header-includes: \usepackage{multicol}
+---
+\newpage
+
+### 1. Use the Spellman yeast cell cycle dataset (spellman.txt).
+```{r}
+
+```
+
+### 2. a) Read into R (Hint: using the read.table() function with a “header” argument is one method to do this).
+```{r}
+
+```
+
+### 2. b) Set the row names to the first column, then remove this first column.
+```{r}
+
+```
+
+### 3a.) Look at the dimensions of the data frame and make sure that there are 6,178 genes and 77 arrays/sample.
+```{r}
+
+```
+
+### 3b.) Isolate only the cdc15 experiment (samples 23-46), pick a gene with some missing values (I use gene #2/YAL002W in the solutions), and impute with the row mean (save as something).
+```{r}
+
+```
+
+### 4.) Look up the functions for boxplot and hist and plot the gene. Color the plots red and title them. Make sure that the vector is numeric (as.numeric).
+```{r}
+
+```
+
+### 5.) Generate a profile plot of the same gene. Title the plot. Use lwd in the plot command (lwd=line width).
+```{r}
+
+```
