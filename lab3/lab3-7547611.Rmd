@@ -18,10 +18,15 @@ output:
 \newpage
 
 ### 1. Get the Eisen DLBCL data set.
+```{r}
+file <- "eisen.txt"
+```
 
 ### 2. Load into R, using read.table and arguments: `header=T, na.strings="NA", blank.lines.skip=F`. There are missing values in this data frame because we’re working with cDNA data. Make sure that you names the row names as the first column values and then remove this first column.
 ```{r}
-
+eisen_data <- read.table(file, header = T, na.strings = "NA", blank.lines.skip = F)
+rownames(eisen_data) <- as.character(eisen_data$UID)
+eisen_data$UID <- NULL
 ```
 
 ### 3. Get the class label file "eisenClasses.txt" from the class web site and read it into R. Use the `header=T` argument.
