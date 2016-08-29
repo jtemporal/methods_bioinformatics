@@ -48,25 +48,36 @@ dimnames(eisen_c1)[[2]]
 
 ### 5. Pick a gene, remove cells that have "NAs", and plot the values for both classes with a:
 ```{r}
-
+# gene 1000
+gene <- "1000"
+c1 <- as.numeric(eisen_c1[gene,])
+c1 <- c1[!is.na(c1)]
+c2 <- as.numeric(eisen_c2[gene,])
+c2 <- c2[!is.na(c2)]
 ```
 
 #### a) boxplot (use the argument `col=c("red", "blue")` to color separate boxes)
 ```{r}
-
+boxplot(list(c1,c2), col = c("red", "blue"),
+        main = "Gene #1000", names = c("class 1", "class 2"))
 ```
+\newpage
 
 #### b) histogram (this should have 2 separate histogram plots on 1 page; use the `par(mfrow=c(2,1))` function prior to plotting the first). Color each class something different in the boxplot and histogram.
 ```{r}
-
+par(mfrow=c(1,2))
+hist(c1, col = "red", main = "Gene #1000", xlab = "Class 1")
+hist(c2, col = "blue", main = "Gene #1000", xlab = "Class 2")
 ```
 
 ### 6. Calculate the standard deviation (sd) for both classes for the gene you chose, use the larger of the two, and calculate the minimum sample size necessary to detect a 1.5 fold difference (at 80% power and 99% confidence).
 ```{r}
-
+c1_sd <- sd(c1)
+c2_sd <- sd(c2)
+power.t.test(delta = 1.5, sd = max(c1_sd, c2_sd), power = 0.8, sig.level = 0.01)
 ```
 
 ### 7. Now calculate the power obtained when using the maximum number of replicates between the 2 classes for your gene (assuming 99% confidence). Set 'n' to the larger of the two classes. Also, start with the assumption that you want to detect a 2 fold difference between the two classes. Hint: `fold <- log(2)` (fold is now the value used for the 'delta' argument).
 ```{r}
-
+power.t.test(n = max(length(c1), length(c2)), delta = log(2), sig.level = 0.01)
 ```
