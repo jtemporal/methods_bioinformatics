@@ -31,12 +31,19 @@ eisen_data$UID <- NULL
 
 ### 3. Get the class label file "eisenClasses.txt" from the class web site and read it into R. Use the `header=T` argument.
 ```{r}
-
+file2 <- "eisenClasses.txt"
+eisen_classes <- read.table(file2, header = T)
 ```
 
 ### 4. Subset the data frame with the class labels and look at the positions so you know where one class ends and the other begins. Remember that ‘subset’ means to re-index (i.e. reorder) the column headers. If you look at the original column name order with `dimnames(dat)[[2]]` both before and after you reorder them, you will see what this has done.
 ```{r}
-
+# eisen_classes$class
+class_1 <- subset(eisen_classes, eisen_classes$class == 1)
+eisen_c1 <- subset(eisen_data, select = class_1$sample)
+class_2 <- subset(eisen_classes, eisen_classes$class == 2)
+eisen_c2 <- subset(eisen_data, select = class_2$sample)
+dimnames(eisen_data)[[2]]
+dimnames(eisen_c1)[[2]]
 ```
 
 ### 5. Pick a gene, remove cells that have "NAs", and plot the values for both classes with a:
