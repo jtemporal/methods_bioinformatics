@@ -1,0 +1,326 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\hypersetup{unicode=true,
+            pdftitle={Lab3},
+            pdfauthor={Jessica Temporal 7547611},
+            pdfsubject={Power and sample size},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Lab3}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+\subtitle{Power and sample size}
+  \author{Jessica Temporal 7547611}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{August 29, 2016}
+
+
+
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{4}
+\tableofcontents
+}
+\newpage
+
+\subsubsection{1. Get the Eisen DLBCL data
+set.}\label{get-the-eisen-dlbcl-data-set.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{file <-}\StringTok{ "eisen.txt"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{2. Load into R, using read.table and
+arguments: \texttt{header=T,\ na.strings="NA",\ blank.lines.skip=F}.
+There are missing values in this data frame because we're working with
+cDNA data. Make sure that you names the row names as the first column
+values and then remove this first
+column.}{2. Load into R, using read.table and arguments: header=T, na.strings="NA", blank.lines.skip=F. There are missing values in this data frame because we're working with cDNA data. Make sure that you names the row names as the first column values and then remove this first column.}}\label{load-into-r-using-read.table-and-arguments-headert-na.stringsna-blank.lines.skipf.-there-are-missing-values-in-this-data-frame-because-were-working-with-cdna-data.-make-sure-that-you-names-the-row-names-as-the-first-column-values-and-then-remove-this-first-column.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eisen_data <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(file, }\DataTypeTok{header =} \NormalTok{T, }\DataTypeTok{na.strings =} \StringTok{"NA"}\NormalTok{, }\DataTypeTok{blank.lines.skip =} \NormalTok{F)}
+\KeywordTok{rownames}\NormalTok{(eisen_data) <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(eisen_data$UID)}
+\NormalTok{eisen_data$UID <-}\StringTok{ }\OtherTok{NULL}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{3. Get the class label file
+``eisenClasses.txt'' from the class web site and read it into R. Use the
+\texttt{header=T}
+argument.}{3. Get the class label file eisenClasses.txt from the class web site and read it into R. Use the header=T argument.}}\label{get-the-class-label-file-eisenclasses.txt-from-the-class-web-site-and-read-it-into-r.-use-the-headert-argument.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{file2 <-}\StringTok{ "eisenClasses.txt"}
+\NormalTok{eisen_classes <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(file2, }\DataTypeTok{header =} \NormalTok{T)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{\texorpdfstring{4. Subset the data frame with the class
+labels and look at the positions so you know where one class ends and
+the other begins. Remember that `subset' means to re-index
+(i.e.~reorder) the column headers. If you look at the original column
+name order with \texttt{dimnames(dat){[}{[}2{]}{]}} both before and
+after you reorder them, you will see what this has
+done.}{4. Subset the data frame with the class labels and look at the positions so you know where one class ends and the other begins. Remember that subset means to re-index (i.e.~reorder) the column headers. If you look at the original column name order with dimnames(dat){[}{[}2{]}{]} both before and after you reorder them, you will see what this has done.}}\label{subset-the-data-frame-with-the-class-labels-and-look-at-the-positions-so-you-know-where-one-class-ends-and-the-other-begins.-remember-that-subset-means-to-re-index-i.e.reorder-the-column-headers.-if-you-look-at-the-original-column-name-order-with-dimnamesdat2-both-before-and-after-you-reorder-them-you-will-see-what-this-has-done.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# eisen_classes$class}
+\NormalTok{class_1 <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(eisen_classes, eisen_classes$class ==}\StringTok{ }\DecValTok{1}\NormalTok{)}
+\NormalTok{eisen_c1 <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(eisen_data, }\DataTypeTok{select =} \NormalTok{class_1$sample)}
+\NormalTok{class_2 <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(eisen_classes, eisen_classes$class ==}\StringTok{ }\DecValTok{2}\NormalTok{)}
+\NormalTok{eisen_c2 <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(eisen_data, }\DataTypeTok{select =} \NormalTok{class_2$sample)}
+\KeywordTok{dimnames}\NormalTok{(eisen_data)[[}\DecValTok{2}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "DLCL.0001" "DLCL.0002" "DLCL.0003" "DLCL.0004" "DLCL.0005"
+##  [6] "DLCL.0006" "DLCL.0007" "DLCL.0008" "DLCL.0009" "DLCL.0010"
+## [11] "DLCL.0011" "DLCL.0012" "DLCL.0013" "DLCL.0014" "DLCL.0015"
+## [16] "DLCL.0016" "DLCL.0017" "DLCL.0018" "DLCL.0020" "DLCL.0021"
+## [21] "DLCL.0023" "DLCL.0024" "DLCL.0025" "DLCL.0026" "DLCL.0027"
+## [26] "DLCL.0028" "DLCL.0029" "DLCL.0030" "DLCL.0031" "DLCL.0032"
+## [31] "DLCL.0033" "DLCL.0034" "DLCL.0036" "DLCL.0037" "DLCL.0039"
+## [36] "DLCL.0040" "DLCL.0041" "DLCL.0042" "DLCL.0048" "DLCL.0049"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dimnames}\NormalTok{(eisen_c1)[[}\DecValTok{2}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "DLCL.0012" "DLCL.0024" "DLCL.0003" "DLCL.0026" "DLCL.0023"
+##  [6] "DLCL.0015" "DLCL.0010" "DLCL.0030" "DLCL.0034" "DLCL.0018"
+## [11] "DLCL.0032" "DLCL.0036" "DLCL.0001" "DLCL.0008" "DLCL.0004"
+## [16] "DLCL.0029" "DLCL.0009" "DLCL.0020" "DLCL.0033"
+\end{verbatim}
+
+\subsubsection{\texorpdfstring{5. Pick a gene, remove cells that have
+``NAs'', and plot the values for both classes with
+a:}{5. Pick a gene, remove cells that have NAs, and plot the values for both classes with a:}}\label{pick-a-gene-remove-cells-that-have-nas-and-plot-the-values-for-both-classes-with-a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# gene 1000}
+\NormalTok{gene <-}\StringTok{ "1000"}
+\NormalTok{c1 <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(eisen_c1[gene,])}
+\NormalTok{c1 <-}\StringTok{ }\NormalTok{c1[!}\KeywordTok{is.na}\NormalTok{(c1)]}
+\NormalTok{c2 <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(eisen_c2[gene,])}
+\NormalTok{c2 <-}\StringTok{ }\NormalTok{c2[!}\KeywordTok{is.na}\NormalTok{(c2)]}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{\texorpdfstring{a) boxplot (use the argument
+\texttt{col=c("red",\ "blue")} to color separate
+boxes)}{a) boxplot (use the argument col=c("red", "blue") to color separate boxes)}}\label{a-boxplot-use-the-argument-colcred-blue-to-color-separate-boxes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(}\KeywordTok{list}\NormalTok{(c1,c2), }\DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"blue"}\NormalTok{),}
+        \DataTypeTok{main =} \StringTok{"Gene #1000"}\NormalTok{, }\DataTypeTok{names =} \KeywordTok{c}\NormalTok{(}\StringTok{"class 1"}\NormalTok{, }\StringTok{"class 2"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{lab3-7547611_files/figure-latex/unnamed-chunk-6-1.pdf}
+\newpage
+
+\paragraph{\texorpdfstring{b) histogram (this should have 2 separate
+histogram plots on 1 page; use the \texttt{par(mfrow=c(2,1))} function
+prior to plotting the first). Color each class something different in
+the boxplot and
+histogram.}{b) histogram (this should have 2 separate histogram plots on 1 page; use the par(mfrow=c(2,1)) function prior to plotting the first). Color each class something different in the boxplot and histogram.}}\label{b-histogram-this-should-have-2-separate-histogram-plots-on-1-page-use-the-parmfrowc21-function-prior-to-plotting-the-first.-color-each-class-something-different-in-the-boxplot-and-histogram.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{hist}\NormalTok{(c1, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Gene #1000"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Class 1"}\NormalTok{)}
+\KeywordTok{hist}\NormalTok{(c2, }\DataTypeTok{col =} \StringTok{"blue"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Gene #1000"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Class 2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{lab3-7547611_files/figure-latex/unnamed-chunk-7-1.pdf}
+\newpage
+
+\subsubsection{6. Calculate the standard deviation (sd) for both classes
+for the gene you chose, use the larger of the two, and calculate the
+minimum sample size necessary to detect a 1.5 fold difference (at 80\%
+power and 99\%
+confidence).}\label{calculate-the-standard-deviation-sd-for-both-classes-for-the-gene-you-chose-use-the-larger-of-the-two-and-calculate-the-minimum-sample-size-necessary-to-detect-a-1.5-fold-difference-at-80-power-and-99-confidence.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{c1_sd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(c1)}
+\NormalTok{c2_sd <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(c2)}
+\KeywordTok{power.t.test}\NormalTok{(}\DataTypeTok{delta =} \KeywordTok{log}\NormalTok{(}\FloatTok{1.5}\NormalTok{),}
+             \DataTypeTok{sd =} \KeywordTok{max}\NormalTok{(c1_sd, c2_sd),}
+             \DataTypeTok{power =} \FloatTok{0.8}\NormalTok{,}
+             \DataTypeTok{sig.level =} \FloatTok{0.01}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 77.45077
+##           delta = 0.4054651
+##              sd = 0.7303008
+##       sig.level = 0.01
+##           power = 0.8
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group
+\end{verbatim}
+
+\subsubsection{\texorpdfstring{7. Now calculate the power obtained when
+using the maximum number of replicates between the 2 classes for your
+gene (assuming 99\% confidence). Set `n' to the larger of the two
+classes. Also, start with the assumption that you want to detect a 2
+fold difference between the two classes. Hint:
+\texttt{fold\ \textless{}-\ log(2)} (fold is now the value used for the
+`delta'
+argument).}{7. Now calculate the power obtained when using the maximum number of replicates between the 2 classes for your gene (assuming 99\% confidence). Set n to the larger of the two classes. Also, start with the assumption that you want to detect a 2 fold difference between the two classes. Hint: fold \textless{}- log(2) (fold is now the value used for the delta argument).}}\label{now-calculate-the-power-obtained-when-using-the-maximum-number-of-replicates-between-the-2-classes-for-your-gene-assuming-99-confidence.-set-n-to-the-larger-of-the-two-classes.-also-start-with-the-assumption-that-you-want-to-detect-a-2-fold-difference-between-the-two-classes.-hint-fold---log2-fold-is-now-the-value-used-for-the-delta-argument.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{power.t.test}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{max}\NormalTok{(}\KeywordTok{length}\NormalTok{(c1), }\KeywordTok{length}\NormalTok{(c2)),}
+             \DataTypeTok{delta =} \KeywordTok{log}\NormalTok{(}\DecValTok{2}\NormalTok{),}
+             \DataTypeTok{sig.level =} \FloatTok{0.01}\NormalTok{,}
+             \DataTypeTok{sd =} \KeywordTok{max}\NormalTok{(c1_sd, c2_sd))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 17
+##           delta = 0.6931472
+##              sd = 0.7303008
+##       sig.level = 0.01
+##           power = 0.5191489
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group
+\end{verbatim}
+
+\end{document}

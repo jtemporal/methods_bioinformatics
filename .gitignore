@@ -1,10 +1,11 @@
 # vim stuff
 *.swp
+
+# R stuff
+.Rhistory
 .Rproj.user
 *.Rproj
 
 # data
 data/
 
-# latex
-*.tex
