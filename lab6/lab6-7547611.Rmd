@@ -17,34 +17,32 @@ output:
 ---
 \newpage
 
-1.) Get the GEO Brain Aging study (agingStudy11FCortexAffy.txt, agingStudy11FCortexAffyAnn.txt).  Also obtain the annotation file for this data frame.
+### 1. Get the GEO Brain Aging study (agingStudy11FCortexAffy.txt, agingStudy11FCortexAffyAnn.txt). Also obtain the annotation file for this data frame.
 ```{r}
 
 ```
 
-2.) Load into R, using read.table() function and the header=T/row.names=1 arguments for each data file.
+### 2. Load into R, using `read.table()` function and the header=T/row.names=1 arguments for each data file.
 ```{r}
 
 ```
 
-3.) Prepare 2 separate vectors for comparison.  The first is a comparison between male and female patients.  The current data frame can be left alone for this, since the males and females are all grouped together.  The second vector is comparison between patients >= 50 years of age and those < 50 years of age.
-To do this, you must use the annotation file and logical operators to isolate the correct arrays/samples.
+### 3. Prepare 2 separate vectors for comparison. The first is a comparison between male and female patients. The current data frame can be left alone for this, since the males and females are all grouped together. The second vector is comparison between patients >= 50 years of age and those < 50 years of age. To do this, you must use the annotation file and logical operators to isolate the correct arrays/samples.
 ```{r}
 
 ```
 
-4.) Run the t.test function from the notes using the first gene vector below for the gender comparison.  Then use the second gene vector below for the age comparison.  Using these p-values, use either p.adjust in the base library or mt.rawp2adjp in the multitest library to adjust the values for multiple corrections with the Holm's method.
+### 4. Run the t.test function from the notes using the first gene vector below for the gender comparison. Then use the second gene vector below for the age comparison. Using these p-values, use either p.adjust in the base library or mt.rawp2adjp in the multitest library to adjust the values for multiple corrections with the Holm's method.
 ```{r}
 
 ```
 
-5.) Sort the adjusted p-values and non-adjusted p-values and plot them vs. the x-axis of numbers (e.g. 1-length(p.adj) for each comparison data set.  Make sure that the two lines are different colors.
-Hint: use sort() to sort the values.
+### 5. Sort the adjusted p-values and non-adjusted p-values and plot them vs. the x-axis of numbers (e.g. `1-length(p.adj)`) for each comparison data set. Make sure that the two lines are different colors. Hint: use `sort()` to sort the values.
 ```{r}
 
 ```
 
-6.) Repeat #4 and #5 with the Bonferroni method.
+### 6. Repeat #4 and #5 with the Bonferroni method.
 ```{r}
 # gender comparison gene vector
 g.g <- c(1394,  1474,  1917,  2099,  2367,  2428, 2625,  3168,  3181,  3641,  3832,  4526,
