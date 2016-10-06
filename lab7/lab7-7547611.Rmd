@@ -28,7 +28,9 @@ fib <- exprs(fibroEset)
 
 ### 2. Select a random set of 50 genes from the data frame, and subset the data frame.
 ```{r}
-
+fib.genes <- rownames(fib)
+sample.genes <- sample(fib.genes, 50)
+fib.sub <- fib[sample.genes, ]
 ```
 
 ### 3. Run and plot hierarchical clustering of the samples using manhattan distance metric and median linkage method. Make sure that the sample classification labels are along the x-axis. Title the plot.
