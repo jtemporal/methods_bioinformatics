@@ -35,10 +35,12 @@ fib.sub <- fib[sample.genes, ]
 
 ### 3. Run and plot hierarchical clustering of the samples using manhattan distance metric and median linkage method. Make sure that the sample classification labels are along the x-axis. Title the plot.
 ```{r}
-fib.man <- dist(t(fib.sub), method = "manhattan")
-fib.hclust <- hclust(fib.man, method = "median")
-plot(fib.hclust, main = "Hierarchical Cluster\nMethods: Manhattan + Median",
-     xlab = "Samples", hang = -1)
+fib.man.samples <- dist(t(fib.sub), method = "manhattan")
+fib.hclust.samples <- hclust(fib.man, method = "median")
+plot(fib.hclust.samples,
+     main = "Hierarchical Cluster\nManhattan",
+     xlab = "Samples",
+     hang = -1)
 ```
 
 ### 4. Now both run hierarchical clustering and plot the results in two dimensions (on samples and genes). Plot a heatmap with the genes on the y-axis and samples on the x-axis. Once again, make sure that the sample and genes labels are present. Title the plot.
