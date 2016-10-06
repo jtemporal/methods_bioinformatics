@@ -33,19 +33,21 @@ sample.genes <- sample(fib.genes, 50)
 fib.sub <- fib[sample.genes, ]
 ```
 
+\newpage
 ### 3. Run and plot hierarchical clustering of the samples using manhattan distance metric and median linkage method. Make sure that the sample classification labels are along the x-axis. Title the plot.
 ```{r}
 fib.man.samples <- dist(t(fib.sub), method = "manhattan")
-fib.hclust.samples <- hclust(fib.man, method = "median")
+fib.hclust.samples <- hclust(fib.man.samples, method = "median")
 plot(fib.hclust.samples,
      main = "Hierarchical Cluster\nManhattan",
      xlab = "Samples",
      hang = -1)
 ```
 
+\newpage
 ### 4. Now both run hierarchical clustering and plot the results in two dimensions (on samples and genes). Plot a heatmap with the genes on the y-axis and samples on the x-axis. Once again, make sure that the sample and genes labels are present. Title the plot.
 ```{r}
-
+heatmap(fib.sub, main = "Heatmap", xlab = "Samples", ylab = "Genes")
 ```
 
 ### 5. Calculate PCA on the samples and retain the first two components vectors (eigenfunctions). Calculate k-means clustering on these first two components with k=3.
