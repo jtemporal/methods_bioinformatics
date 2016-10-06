@@ -19,7 +19,11 @@ output:
 
 ### 1. Load the fibroEset library and data set (`library(fibroEset)`). Obtain the classifications for the samples.
 ```{r}
-
+source("http://bioconductor.org/biocLite.R")
+biocLite("fibroEset")
+library(fibroEset)
+data("fibroEset")
+fib <- exprs(fibroEset)
 ```
 
 ### 2. Select a random set of 50 genes from the data frame, and subset the data frame.
