@@ -44,6 +44,9 @@ body {
 
 /* 03 Spacing */
 
+section {
+  height: 3em;
+}
 body {
   line-height: 1.5;
   padding: 4em 1em;
