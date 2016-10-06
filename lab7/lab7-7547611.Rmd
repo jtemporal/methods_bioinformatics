@@ -47,9 +47,12 @@ plot(fib.hclust.samples,
 \newpage
 ### 4. Now both run hierarchical clustering and plot the results in two dimensions (on samples and genes). Plot a heatmap with the genes on the y-axis and samples on the x-axis. Once again, make sure that the sample and genes labels are present. Title the plot.
 ```{r}
-heatmap(fib.sub, main = "Heatmap", xlab = "Samples", ylab = "Genes")
+hm.col <- c("#FF0000", "#CC0000", "#990000", "#660000", "#330000", "#000000",
+            "#000000", "#0A3300", "#146600", "#1F9900", "#29CC00", "#33FF00")
+heatmap(fib.sub, main = "Heatmap", xlab = "Samples", ylab = "Genes", col = hm.col)
 ```
 
+\newpage
 ### 5. Calculate PCA on the samples and retain the first two components vectors (eigenfunctions). Calculate k-means clustering on these first two components with k=3.
 ```{r}
 
