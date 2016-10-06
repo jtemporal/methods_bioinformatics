@@ -1,0 +1,72 @@
+---
+title: "Lab7"
+
+subtitle: "Cluster Analysis"
+
+author: "Jessica Temporal 7547611"
+
+date: "October 6, 2016"
+
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+    keep_tex: yes
+  html_document:
+    toc: no
+---
+\newpage
+
+### 1. Load the fibroEset library and data set (`library(fibroEset)`). Obtain the classifications for the samples.
+```{r}
+source("http://bioconductor.org/biocLite.R")
+biocLite("fibroEset")
+library(fibroEset)
+data("fibroEset")
+fib <- exprs(fibroEset)
+```
+
+### 2. Select a random set of 50 genes from the data frame, and subset the data frame.
+```{r}
+fib.genes <- rownames(fib)
+sample.genes <- sample(fib.genes, 50)
+fib.sub <- fib[sample.genes, ]
+```
+
+\newpage
+### 3. Run and plot hierarchical clustering of the samples using manhattan distance metric and median linkage method. Make sure that the sample classification labels are along the x-axis. Title the plot.
+```{r}
+fib.man.samples <- dist(t(fib.sub), method = "manhattan")
+fib.hclust.samples <- hclust(fib.man.samples, method = "median")
+plot(fib.hclust.samples,
+     main = "Hierarchical Cluster\nManhattan",
+     xlab = "Samples",
+     hang = -1)
+```
+
+\newpage
+### 4. Now both run hierarchical clustering and plot the results in two dimensions (on samples and genes). Plot a heatmap with the genes on the y-axis and samples on the x-axis. Once again, make sure that the sample and genes labels are present. Title the plot.
+```{r}
+hm.col <- c("#FF0000", "#CC0000", "#990000", "#660000", "#330000", "#000000",
+            "#000000", "#0A3300", "#146600", "#1F9900", "#29CC00", "#33FF00")
+heatmap(fib.sub, main = "Heatmap", xlab = "Samples", ylab = "Genes", col = hm.col)
+```
+
+\newpage
+### 5. Calculate PCA on the samples and retain the first two components vectors (eigenfunctions). Calculate k-means clustering on these first two components with k=3.
+```{r}
+fib.pca <- prcomp(x = t(fib.sub))
+fib.kmeans <- kmeans(fib.pca$x[,1:2], centers = 3)
+plot(fib.sub, col = fib.kmeans$cluster, cex=1, xlab = "PC1", ylab = "PC2",
+     main = "PCA Plot")
+points(fib.kmeans$centers, col = 1:4, pch = "*", cex = 2.5)
+```
+
+\newpage
+### 6. Plot a two-dimensional scatter plot of the sample classification labels, embedded with the first two eigenfunctions (from PCA). Color the labels with the color that corresponds to the predicted cluster membership. Make sure to label the axes and title the plot. Color based on kmeans cluster. Put the different species and identify them and then color them based on kmeans cluster to see which species didn’t cluster correctly.
+```{r}
+fib.species <- fibroEset$species
+plot(fib.sub, col = fib.kmeans$cluster, cex = 1, xlab = "PC1", ylab = "PC2",
+     main = "PCA Plot")
+text(fib.sub, labels = fib.species, cex = 1, pos = 1)
+```

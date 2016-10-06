@@ -1,0 +1,341 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\hypersetup{unicode=true,
+            pdftitle={Lab7},
+            pdfauthor={Jessica Temporal 7547611},
+            pdfsubject={Cluster Analysis},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Lab7}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+\subtitle{Cluster Analysis}
+  \author{Jessica Temporal 7547611}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{October 6, 2016}
+
+
+
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{4}
+\tableofcontents
+}
+\newpage
+
+\subsubsection{\texorpdfstring{1. Load the fibroEset library and data
+set (\texttt{library(fibroEset)}). Obtain the classifications for the
+samples.}{1. Load the fibroEset library and data set (library(fibroEset)). Obtain the classifications for the samples.}}\label{load-the-fibroeset-library-and-data-set-libraryfibroeset.-obtain-the-classifications-for-the-samples.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source}\NormalTok{(}\StringTok{"http://bioconductor.org/biocLite.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Bioconductor version 3.2 (BiocInstaller 1.20.3), ?biocLite for help
+\end{verbatim}
+
+\begin{verbatim}
+## A new version of Bioconductor is available after installing the most
+##   recent version of R; see http://bioconductor.org/install
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{biocLite}\NormalTok{(}\StringTok{"fibroEset"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## BioC_mirror: https://bioconductor.org
+\end{verbatim}
+
+\begin{verbatim}
+## Using Bioconductor 3.2 (BiocInstaller 1.20.3), R 3.2.2 (2015-08-14).
+\end{verbatim}
+
+\begin{verbatim}
+## Installing package(s) 'fibroEset'
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## The downloaded source packages are in
+##  '/tmp/RtmpXvMORv/downloaded_packages'
+\end{verbatim}
+
+\begin{verbatim}
+## Old packages: 'boot', 'class', 'cluster', 'codetools', 'foreign',
+##   'lattice', 'MASS', 'Matrix', 'mgcv', 'nlme', 'nnet', 'spatial',
+##   'survival'
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(fibroEset)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: Biobase
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: BiocGenerics
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: parallel
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'BiocGenerics'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:parallel':
+## 
+##     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,
+##     clusterExport, clusterMap, parApply, parCapply, parLapply,
+##     parLapplyLB, parRapply, parSapply, parSapplyLB
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     IQR, mad, xtabs
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     anyDuplicated, append, as.data.frame, as.vector, cbind,
+##     colnames, do.call, duplicated, eval, evalq, Filter, Find, get,
+##     grep, grepl, intersect, is.unsorted, lapply, lengths, Map,
+##     mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+##     pmin.int, Position, rank, rbind, Reduce, rownames, sapply,
+##     setdiff, sort, table, tapply, union, unique, unlist, unsplit
+\end{verbatim}
+
+\begin{verbatim}
+## Welcome to Bioconductor
+## 
+##     Vignettes contain introductory material; view with
+##     'browseVignettes()'. To cite Bioconductor, see
+##     'citation("Biobase")', and for packages 'citation("pkgname")'.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data}\NormalTok{(}\StringTok{"fibroEset"}\NormalTok{)}
+\NormalTok{fib <-}\StringTok{ }\KeywordTok{exprs}\NormalTok{(fibroEset)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{2. Select a random set of 50 genes from the data frame,
+and subset the data
+frame.}\label{select-a-random-set-of-50-genes-from-the-data-frame-and-subset-the-data-frame.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fib.genes <-}\StringTok{ }\KeywordTok{rownames}\NormalTok{(fib)}
+\NormalTok{sample.genes <-}\StringTok{ }\KeywordTok{sample}\NormalTok{(fib.genes, }\DecValTok{50}\NormalTok{)}
+\NormalTok{fib.sub <-}\StringTok{ }\NormalTok{fib[sample.genes, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\newpage
+
+\subsubsection{3. Run and plot hierarchical clustering of the samples
+using manhattan distance metric and median linkage method. Make sure
+that the sample classification labels are along the x-axis. Title the
+plot.}\label{run-and-plot-hierarchical-clustering-of-the-samples-using-manhattan-distance-metric-and-median-linkage-method.-make-sure-that-the-sample-classification-labels-are-along-the-x-axis.-title-the-plot.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fib.man.samples <-}\StringTok{ }\KeywordTok{dist}\NormalTok{(}\KeywordTok{t}\NormalTok{(fib.sub), }\DataTypeTok{method =} \StringTok{"manhattan"}\NormalTok{)}
+\NormalTok{fib.hclust.samples <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(fib.man.samples, }\DataTypeTok{method =} \StringTok{"median"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(fib.hclust.samples,}
+     \DataTypeTok{main =} \StringTok{"Hierarchical Cluster}\CharTok{\textbackslash{}n}\StringTok{Manhattan"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Samples"}\NormalTok{,}
+     \DataTypeTok{hang =} \NormalTok{-}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{lab7-7547611_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\newpage
+
+\subsubsection{4. Now both run hierarchical clustering and plot the
+results in two dimensions (on samples and genes). Plot a heatmap with
+the genes on the y-axis and samples on the x-axis. Once again, make sure
+that the sample and genes labels are present. Title the
+plot.}\label{now-both-run-hierarchical-clustering-and-plot-the-results-in-two-dimensions-on-samples-and-genes.-plot-a-heatmap-with-the-genes-on-the-y-axis-and-samples-on-the-x-axis.-once-again-make-sure-that-the-sample-and-genes-labels-are-present.-title-the-plot.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hm.col <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"#FF0000"}\NormalTok{, }\StringTok{"#CC0000"}\NormalTok{, }\StringTok{"#990000"}\NormalTok{, }\StringTok{"#660000"}\NormalTok{, }\StringTok{"#330000"}\NormalTok{, }\StringTok{"#000000"}\NormalTok{,}
+            \StringTok{"#000000"}\NormalTok{, }\StringTok{"#0A3300"}\NormalTok{, }\StringTok{"#146600"}\NormalTok{, }\StringTok{"#1F9900"}\NormalTok{, }\StringTok{"#29CC00"}\NormalTok{, }\StringTok{"#33FF00"}\NormalTok{)}
+\KeywordTok{heatmap}\NormalTok{(fib.sub, }\DataTypeTok{main =} \StringTok{"Heatmap"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Samples"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Genes"}\NormalTok{, }\DataTypeTok{col =} \NormalTok{hm.col)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{lab7-7547611_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\newpage
+
+\subsubsection{5. Calculate PCA on the samples and retain the first two
+components vectors (eigenfunctions). Calculate k-means clustering on
+these first two components with
+k=3.}\label{calculate-pca-on-the-samples-and-retain-the-first-two-components-vectors-eigenfunctions.-calculate-k-means-clustering-on-these-first-two-components-with-k3.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fib.pca <-}\StringTok{ }\KeywordTok{prcomp}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{t}\NormalTok{(fib.sub))}
+\NormalTok{fib.kmeans <-}\StringTok{ }\KeywordTok{kmeans}\NormalTok{(fib.pca$x[,}\DecValTok{1}\NormalTok{:}\DecValTok{2}\NormalTok{], }\DataTypeTok{centers =} \DecValTok{3}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(fib.sub, }\DataTypeTok{col =} \NormalTok{fib.kmeans$cluster, }\DataTypeTok{cex=}\DecValTok{1}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"PC1"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"PC2"}\NormalTok{,}
+     \DataTypeTok{main =} \StringTok{"PCA Plot"}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(fib.kmeans$centers, }\DataTypeTok{col =} \DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{, }\DataTypeTok{pch =} \StringTok{"*"}\NormalTok{, }\DataTypeTok{cex =} \FloatTok{2.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{lab7-7547611_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\newpage
+
+\subsubsection{6. Plot a two-dimensional scatter plot of the sample
+classification labels, embedded with the first two eigenfunctions (from
+PCA). Color the labels with the color that corresponds to the predicted
+cluster membership. Make sure to label the axes and title the plot.
+Color based on kmeans cluster. Put the different species and identify
+them and then color them based on kmeans cluster to see which species
+didn't cluster
+correctly.}\label{plot-a-two-dimensional-scatter-plot-of-the-sample-classification-labels-embedded-with-the-first-two-eigenfunctions-from-pca.-color-the-labels-with-the-color-that-corresponds-to-the-predicted-cluster-membership.-make-sure-to-label-the-axes-and-title-the-plot.-color-based-on-kmeans-cluster.-put-the-different-species-and-identify-them-and-then-color-them-based-on-kmeans-cluster-to-see-which-species-didnt-cluster-correctly.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fib.species <-}\StringTok{ }\NormalTok{fibroEset$species}
+\KeywordTok{plot}\NormalTok{(fib.sub, }\DataTypeTok{col =} \NormalTok{fib.kmeans$cluster, }\DataTypeTok{cex =} \DecValTok{1}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"PC1"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"PC2"}\NormalTok{,}
+     \DataTypeTok{main =} \StringTok{"PCA Plot"}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(fib.sub, }\DataTypeTok{labels =} \NormalTok{fib.species, }\DataTypeTok{cex =} \DecValTok{1}\NormalTok{, }\DataTypeTok{pos =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{lab7-7547611_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\end{document}
