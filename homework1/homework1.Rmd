@@ -64,7 +64,11 @@ plot(golub_hclust, main = "Hierarchical dendrogram - Golub Data", labels = c(1:3
 
 ### 6.3) CV vs. mean plot
 ```{r}
-
+golub_sub_mean <- apply(golub_sub, 2, mean)
+golub_sub_cv <- (apply(golub_sub, 2, sd))/golub_sub_mean
+plot(golub_sub_cv, golub_sub_mean, xlab = "CV", ylab = "Mean",
+     main = "Golub - CV vs. mean")
+text(golub_sub_cv, golub_sub_mean, labels = c(1:ncol(golub_sub)))
 ```
 
 ## 7) Now download and load the Spellman yeast data set. Remember to set the row names to the first column as you did before with the leukemia dataset.
