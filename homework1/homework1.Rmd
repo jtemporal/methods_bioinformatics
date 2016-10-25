@@ -97,9 +97,8 @@ miss.fill <- function(x) {
 	return(x)
 }
 
-#dat.fill <- as.data.frame(t(apply(dat,1,miss.fill)))
-#dat.fill <- round(dat.fill,2)
-#dat<-dat.fill
+cdc28_fill <- as.data.frame(t(apply(cdc28, 1, miss.fill)))
+cdc28_fill <- round(cdc28_fill, 2)
 ```
 
 ## 10) Calculate the kmeans clustering method on all 6,178 genes, using 10 cluster centers and 100 iterations.
