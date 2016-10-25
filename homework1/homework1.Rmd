@@ -81,7 +81,8 @@ spell_data$row.names <- NULL
 
 ## 8) Cast the data to a data frame and subset to only work with the cdc28 experiment samples.
 ```{r}
-
+spell_df <- as.data.frame(spell_data)
+cdc28 <- subset(spell_df, select = grep("cdc28", names(spell_df)))
 ```
 
 ## 9) Use both the function and call to the function below to fill all “NA” values with the computed row means.
