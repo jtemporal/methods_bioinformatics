@@ -1,0 +1,370 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\hypersetup{unicode=true,
+            pdftitle={Homework 1},
+            pdfauthor={Jessica Temporal 7547611},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Homework 1}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Jessica Temporal 7547611}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{August 15, 2016}
+
+
+
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\newpage
+
+\subsection{1) Load the Golub ALL/AML training set data file into R. Set
+the row names to the first column values (Affymetrix fragment names) and
+remove the first column. Look at the dimensions and verify that you have
+38 arrays and 7,129
+genes.}\label{load-the-golub-allaml-training-set-data-file-into-r.-set-the-row-names-to-the-first-column-values-affymetrix-fragment-names-and-remove-the-first-column.-look-at-the-dimensions-and-verify-that-you-have-38-arrays-and-7129-genes.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{file <-}\StringTok{ "golubTrain.txt"}
+\NormalTok{golub_data <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(file, }\DataTypeTok{header =} \NormalTok{T)}
+\KeywordTok{rownames}\NormalTok{(golub_data) <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(golub_data[,}\DecValTok{1}\NormalTok{])}
+\NormalTok{golub_data$Gene <-}\StringTok{ }\OtherTok{NULL}
+\KeywordTok{dim}\NormalTok{(golub_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7129   38
+\end{verbatim}
+
+\subsection{2) Download and load the 3 class annotation file
+(golubTrainClass2.txt) for this data set into
+R.}\label{download-and-load-the-3-class-annotation-file-golubtrainclass2.txt-for-this-data-set-into-r.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{file2 <-}\StringTok{ "golubTrainClass2.txt"}
+\NormalTok{class_data <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(file2)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{3) Cast the data to a data
+frame.}\label{cast-the-data-to-a-data-frame.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{golub_df <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(golub_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{4) Make the names of the data frame the annotation file
+labels (remember that depending on how you read in the annotation file,
+it may be a dataframe with 1
+column.}\label{make-the-names-of-the-data-frame-the-annotation-file-labels-remember-that-depending-on-how-you-read-in-the-annotation-file-it-may-be-a-dataframe-with-1-column.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(golub_df) <-}\StringTok{ }\NormalTok{class_data[,}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{5) Subset the data by the first 100
+genes.}\label{subset-the-data-by-the-first-100-genes.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{golub_sub <-}\StringTok{ }\NormalTok{golub_df[}\DecValTok{1}\NormalTok{:}\DecValTok{100}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\newpage
+
+\subsection{6) When utilizing only the first 100 genes, there exists one
+aberrant outlier sample. Identify this outlier sample using the
+following visual
+plots:}\label{when-utilizing-only-the-first-100-genes-there-exists-one-aberrant-outlier-sample.-identify-this-outlier-sample-using-the-following-visual-plots}
+
+\subsubsection{6.1) Correlation plot (heat
+map)}\label{correlation-plot-heat-map}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{golub_cor <-}\StringTok{ }\KeywordTok{cor}\NormalTok{(golub_sub)}
+\KeywordTok{image}\NormalTok{(golub_cor, }\DataTypeTok{main =} \StringTok{"Correlation plot - Golub Data"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{homework1_files/figure-latex/unnamed-chunk-6-1.pdf}
+\newpage
+
+\subsubsection{6.2) Hierarchical clustering
+dendrogram}\label{hierarchical-clustering-dendrogram}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{golub_dist <-}\StringTok{ }\KeywordTok{dist}\NormalTok{(}\KeywordTok{t}\NormalTok{(golub_sub))}
+\NormalTok{golub_hclust <-}\StringTok{ }\KeywordTok{hclust}\NormalTok{(golub_dist)}
+\KeywordTok{plot}\NormalTok{(golub_hclust, }\DataTypeTok{main =} \StringTok{"Hierarchical dendrogram - Golub Data"}\NormalTok{, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{38}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{homework1_files/figure-latex/unnamed-chunk-7-1.pdf}
+\newpage
+
+\subsubsection{6.3) CV vs.~mean plot}\label{cv-vs.mean-plot}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{golub_sub_mean <-}\StringTok{ }\KeywordTok{apply}\NormalTok{(golub_sub, }\DecValTok{2}\NormalTok{, mean)}
+\NormalTok{golub_sub_cv <-}\StringTok{ }\NormalTok{(}\KeywordTok{apply}\NormalTok{(golub_sub, }\DecValTok{2}\NormalTok{, sd))/golub_sub_mean}
+\KeywordTok{plot}\NormalTok{(golub_sub_cv, golub_sub_mean, }\DataTypeTok{xlab =} \StringTok{"CV"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Mean"}\NormalTok{,}
+     \DataTypeTok{main =} \StringTok{"Golub - CV vs. mean"}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(golub_sub_cv, golub_sub_mean, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{:}\KeywordTok{ncol}\NormalTok{(golub_sub)), }\DataTypeTok{pos =} \DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{homework1_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\subsection{7) Now download and load the Spellman yeast data set.
+Remember to set the row names to the first column as you did before with
+the leukemia
+dataset.}\label{now-download-and-load-the-spellman-yeast-data-set.-remember-to-set-the-row-names-to-the-first-column-as-you-did-before-with-the-leukemia-dataset.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spell <-}\StringTok{ "spellman.txt"}
+\NormalTok{spell_data <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(spell, }\DataTypeTok{header =} \NormalTok{T)}
+\KeywordTok{rownames}\NormalTok{(spell_data) <-}\StringTok{ }\KeywordTok{as.character}\NormalTok{(spell_data$row.names)}
+\NormalTok{spell_data$row.names <-}\StringTok{ }\OtherTok{NULL}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{8) Cast the data to a data frame and subset to only work
+with the cdc28 experiment
+samples.}\label{cast-the-data-to-a-data-frame-and-subset-to-only-work-with-the-cdc28-experiment-samples.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spell_df <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(spell_data)}
+\NormalTok{cdc28 <-}\StringTok{ }\KeywordTok{subset}\NormalTok{(spell_df, }\DataTypeTok{select =} \KeywordTok{grep}\NormalTok{(}\StringTok{"cdc28"}\NormalTok{, }\KeywordTok{names}\NormalTok{(spell_df)))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{\texorpdfstring{9) Use both the function and call to the
+function below to fill all ``NA'' values with the computed row
+means.}{9) Use both the function and call to the function below to fill all NA values with the computed row means.}}\label{use-both-the-function-and-call-to-the-function-below-to-fill-all-na-values-with-the-computed-row-means.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{miss.fill <-}\StringTok{ }\NormalTok{function(x) \{}
+    \NormalTok{if(}\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(x))) ==}\DecValTok{17} \NormalTok{) \{}
+        \NormalTok{x[}\KeywordTok{is.na}\NormalTok{(x)] <-}\DecValTok{0}
+    \NormalTok{\}}
+    \NormalTok{if(}\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(x))) >}\StringTok{ }\DecValTok{0} \NormalTok{&}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(x))) <}\DecValTok{17} \NormalTok{) \{}
+        \NormalTok{x[}\KeywordTok{is.na}\NormalTok{(x)] <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{as.numeric}\NormalTok{(x[!}\KeywordTok{is.na}\NormalTok{(x)]))}
+    \NormalTok{\}}
+    \KeywordTok{return}\NormalTok{(x)}
+\NormalTok{\}}
+
+\NormalTok{cdc28_fill <-}\StringTok{ }\KeywordTok{as.data.frame}\NormalTok{(}\KeywordTok{t}\NormalTok{(}\KeywordTok{apply}\NormalTok{(cdc28, }\DecValTok{1}\NormalTok{, miss.fill)))}
+\NormalTok{cdc28_fill <-}\StringTok{ }\KeywordTok{round}\NormalTok{(cdc28_fill, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{10) Calculate the kmeans clustering method on all 6,178
+genes, using 10 cluster centers and 100
+iterations.}\label{calculate-the-kmeans-clustering-method-on-all-6178-genes-using-10-cluster-centers-and-100-iterations.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cdc28_kmeans <-}\StringTok{ }\KeywordTok{kmeans}\NormalTok{(cdc28_fill, }\DataTypeTok{centers =} \DecValTok{10}\NormalTok{, }\DataTypeTok{iter.max =} \DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{\texorpdfstring{11) Look for gene \#2 (YAL002W) and find the
+cluster that it belongs to. Using these genes, calculate the distance
+from each gene to gene \#2 (use manhattan distance in \texttt{dist()}
+function)}{11) Look for gene \#2 (YAL002W) and find the cluster that it belongs to. Using these genes, calculate the distance from each gene to gene \#2 (use manhattan distance in dist() function)}}\label{look-for-gene-2-yal002w-and-find-the-cluster-that-it-belongs-to.-using-these-genes-calculate-the-distance-from-each-gene-to-gene-2-use-manhattan-distance-in-dist-function}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groups <-}\StringTok{ }\NormalTok{cdc28_kmeans$cluster}
+\KeywordTok{head}\NormalTok{(groups)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## YAL001C YAL002W YAL003W YAL004W YAL005C YAL007C 
+##       4       4       3       2       2       6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groups[}\StringTok{'YAL002W'}\NormalTok{] }\CommentTok{# cluster 4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## YAL002W 
+##       4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cluster <-}\StringTok{ }\NormalTok{groups ==}\StringTok{ }\DecValTok{4}
+\NormalTok{cluster <-}\StringTok{ }\KeywordTok{dimnames}\NormalTok{(cdc28_fill)[[}\DecValTok{1}\NormalTok{]][cluster]}
+\NormalTok{dist2genes <-}\StringTok{ }\KeywordTok{dist}\NormalTok{(cdc28_fill[cluster,], }\DataTypeTok{method =} \StringTok{'man'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{\texorpdfstring{12) Cast the distance object to a matrix and
+get the column that gene \#2 corresponds to. Hint: If gene \#2 is in
+column \#1 of your matrix, get the corresponding cluster member
+distances with:
+\texttt{gene.dist\ \textless{}-\ gene.dist{[}2:nrow(gene.dist),1{]}} If
+gene \#2 is in column \#4 of your matrix, get the corresponding cluster
+member distances with:
+\texttt{gene.dist\ \textless{}-\ gene.dist{[}c(1:3,5:nrow(gene.dist)),4{]}}}{12) Cast the distance object to a matrix and get the column that gene \#2 corresponds to. Hint: If gene \#2 is in column \#1 of your matrix, get the corresponding cluster member distances with: gene.dist \textless{}- gene.dist{[}2:nrow(gene.dist),1{]} If gene \#2 is in column \#4 of your matrix, get the corresponding cluster member distances with: gene.dist \textless{}- gene.dist{[}c(1:3,5:nrow(gene.dist)),4{]}}}\label{cast-the-distance-object-to-a-matrix-and-get-the-column-that-gene-2-corresponds-to.-hint-if-gene-2-is-in-column-1-of-your-matrix-get-the-corresponding-cluster-member-distances-with-gene.dist---gene.dist2nrowgene.dist1-if-gene-2-is-in-column-4-of-your-matrix-get-the-corresponding-cluster-member-distances-with-gene.dist---gene.distc135nrowgene.dist4}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist_mat <-}\StringTok{ }\KeywordTok{as.matrix}\NormalTok{(dist2genes)}
+\NormalTok{gene2 <-}\StringTok{ }\NormalTok{dist_mat[}\DecValTok{2}\NormalTok{:}\KeywordTok{nrow}\NormalTok{(dist_mat),}\StringTok{'YAL002W'}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{13) Get the weights of each gene as a percentage of the sum
+of distance values. Assuming that the first array (cdc28\_0) is missing
+a value for gene \#2, calculate the weighted mean from the gene weight
+vector for this missing value. Print out this weighted mean
+value.}\label{get-the-weights-of-each-gene-as-a-percentage-of-the-sum-of-distance-values.-assuming-that-the-first-array-cdc28ux5f0-is-missing-a-value-for-gene-2-calculate-the-weighted-mean-from-the-gene-weight-vector-for-this-missing-value.-print-out-this-weighted-mean-value.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{weights <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(gene2/}\KeywordTok{sum}\NormalTok{(gene2))}
+\NormalTok{weighted_mean <-}\StringTok{ }\KeywordTok{weighted.mean}\NormalTok{(}\DataTypeTok{x =} \KeywordTok{as.numeric}\NormalTok{(gene2), }\DataTypeTok{w =} \NormalTok{weights)}
+\NormalTok{weighted_mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.527842
+\end{verbatim}
+
+\end{document}
