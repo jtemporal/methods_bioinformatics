@@ -108,7 +108,12 @@ cdc28_kmeans <- kmeans(cdc28_fill, centers = 10, iter.max = 100)
 
 ## 11) Look for gene #2 (YAL002W) and find the cluster that it belongs to. Using these genes, calculate the distance from each gene to gene #2 (use manhattan distance in `dist()` function)
 ```{r}
-
+groups <- cdc28_kmeans$cluster
+head(groups)
+groups['YAL002W'] # cluster 4
+cluster <- groups == 4
+cluster <- dimnames(cdc28_fill)[[1]][cluster]
+dist2genes <- dist(cdc28_fill[cluster,], method = 'man')
 ```
 
 ## 12) Cast the distance object to a matrix and get the column that gene #2 corresponds to.  Hint: If gene #2 is in column #1 of your matrix, get the corresponding cluster member distances with: `gene.dist <- gene.dist[2:nrow(gene.dist),1]` If gene #2 is in column #4 of your matrix, get the corresponding cluster member distances with: `gene.dist <- gene.dist[c(1:3,5:nrow(gene.dist)),4]`
