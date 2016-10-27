@@ -103,10 +103,10 @@ cdc28_fill <- round(cdc28_fill, 2)
 
 ## 10) Calculate the kmeans clustering method on all 6,178 genes, using 10 cluster centers and 100 iterations.
 ```{r}
-
+cdc28_kmeans <- kmeans(cdc28_fill, centers = 10, iter.max = 100)
 ```
 
-## 11) Look for gene #2 (YAL002W) and find the cluster that it belongs to.  Using these genes, calculate the distance from each gene to gene #2 (use manhattan distance in dist() function)
+## 11) Look for gene #2 (YAL002W) and find the cluster that it belongs to. Using these genes, calculate the distance from each gene to gene #2 (use manhattan distance in `dist()` function)
 ```{r}
 
 ```
