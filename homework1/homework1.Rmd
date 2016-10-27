@@ -124,5 +124,7 @@ gene2 <- dist_mat[2:nrow(dist_mat),'YAL002W']
 
 ## 13) Get the weights of each gene as a percentage of the sum of distance values. Assuming that the first array (cdc28_0) is missing a value for gene #2, calculate the weighted mean from the gene weight vector for this missing value. Print out this weighted mean value.
 ```{r}
-
+weights <- as.numeric(gene2/sum(gene2))
+weighted_mean <- weighted.mean(x = as.numeric(gene2), w = weights)
+weighted_mean
 ```
