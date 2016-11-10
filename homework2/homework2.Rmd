@@ -28,10 +28,19 @@ data(MouseArray)
 
 ## 3. Using list commands, turn the five_arrays matrix file into the list object that is similar to the mouse.data example.  See hints below. (10 pts)
 ```{r}
-
+five <- as.list(cdna)
+five$R <- as.matrix(cdna[,c(1:5)])
+five$G <- as.matrix(cdna[,c(6:10)])
+five$Rb <- as.matrix(cdna[,c(11:15)])
+five$Gb <- as.matrix(cdna[,c(16:20)])
+five <- five[c(c(1:5)[1],c(6:10)[1],c(11:15)[1], c(16:20)[1])]
+names(five)[1] <- "R"
+names(five)[2] <- "G"
+names(five)[3] <- "Rb"
+names(five)[4] <- "Gb"
 ```
 
-## 4. Now create a plot of both un-normalized and lowess normalized data for chip #5 (image.id argument) using the plot.mva function.  Make sure to use a par command to put both plots on the same page.  Title both plots. For the layout argument in plot.mva(), use the mouse.setup file. (15 pts)
+## 4. Now create a plot of both un-normalized and lowess normalized data for chip #5 (image.id argument) using the plot.mva function. Make sure to use a par command to put both plots on the same page. Title both plots. For the layout argument in plot.mva(), use the mouse.setup file. (15 pts)
 ```{r}
 
 ```
