@@ -16,7 +16,8 @@ output:
 
 ## 1. Read the provided text file into R, making sure to account for headers. This is a truncated cDNA array expression file that has only the Cy5 and Cy3 foreground and background values for 5 separate arrays. The numbers in the suffix of the names are time points (though not necessary for our purposes). (2.5 pts)
 ```{r}
-
+file <- 'five.txt'
+cdna <- read.table(file, header = T)
 ```
 
 ## 2. Load the sma library and the MouseArray data file (with data()). (2.5 pts)
