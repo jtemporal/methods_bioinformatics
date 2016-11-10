@@ -1,0 +1,17 @@
+---
+title: "Homework 2"
+
+author: "Jessica Temporal 7547611"
+
+date: "November 10, 2016"
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: 3
+    keep_tex: yes
+  html_document:
+    toc: no
+---
+\newpage
+
+##
