@@ -22,7 +22,8 @@ cdna <- read.table(file, header = T)
 
 ## 2. Load the sma library and the MouseArray data file (with data()). (2.5 pts)
 ```{r}
-
+library(sma)
+data(MouseArray)
 ```
 
 ## 3. Using list commands, turn the five_arrays matrix file into the list object that is similar to the mouse.data example.  See hints below. (10 pts)
