@@ -5,7 +5,10 @@
 .Rhistory
 .Rproj.user
 *.Rproj
+.RData
 
 # data
 data/
 
+# doc
+*.doc
