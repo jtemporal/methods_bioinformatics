@@ -37,6 +37,11 @@ five.data <- list('R' = data[,c(1:5)],
 
 ## 4. Now create a plot of both un-normalized and lowess normalized data for chip #5 (image.id argument) using the plot.mva function. Make sure to use a par command to put both plots on the same page. Title both plots. For the layout argument in plot.mva(), use the mouse.setup file. (15 pts)
 ```{r}
+par(mfrow=c(2,1))
+plot.mva(five.data, layout = mouse.setup, plot.type = 'r',
+         norm = "n", extra.type = "pci", image.id = 5, main = "non-normalized - Chip #5")
+plot.mva(five.data, layout = mouse.setup, plot.type = 'n',
+         norm = "l", extra.type = "pci", image.id = 5, main = "lowess normalized - Chip #5")
 ```
 
 ## 5. How do the 2 plots differ? What has lowess normalization done to the distribution of expression values? (5 pts)
