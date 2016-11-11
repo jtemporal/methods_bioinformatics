@@ -17,7 +17,7 @@ output:
 ## 1. Read the provided text file into R, making sure to account for headers. This is a truncated cDNA array expression file that has only the Cy5 and Cy3 foreground and background values for 5 separate arrays. The numbers in the suffix of the names are time points (though not necessary for our purposes). (2.5 pts)
 ```{r}
 file <- 'five.txt'
-cdna <- read.table(file, header = T)
+data <- read.table(file, header = T)
 ```
 
 ## 2. Load the sma library and the MouseArray data file (with data()). (2.5 pts)
@@ -28,21 +28,15 @@ data(MouseArray)
 
 ## 3. Using list commands, turn the five_arrays matrix file into the list object that is similar to the mouse.data example.  See hints below. (10 pts)
 ```{r}
-five <- as.list(cdna)
-five$R <- as.matrix(cdna[,c(1:5)])
-five$G <- as.matrix(cdna[,c(6:10)])
-five$Rb <- as.matrix(cdna[,c(11:15)])
-five$Gb <- as.matrix(cdna[,c(16:20)])
-five <- five[c(c(1:5)[1],c(6:10)[1],c(11:15)[1], c(16:20)[1])]
-names(five)[1] <- "R"
-names(five)[2] <- "G"
-names(five)[3] <- "Rb"
-names(five)[4] <- "Gb"
+five.data <- list('R' = data[,c(1:5)],
+                  'G' = data[, c(6:10)],
+                  'Rb' = data[,c(11:15)],
+                  'Gb' = data[, c(16:20)]
+                  )
 ```
 
 ## 4. Now create a plot of both un-normalized and lowess normalized data for chip #5 (image.id argument) using the plot.mva function. Make sure to use a par command to put both plots on the same page. Title both plots. For the layout argument in plot.mva(), use the mouse.setup file. (15 pts)
 ```{r}
-
 ```
 
 ## 5. How do the 2 plots differ? What has lowess normalization done to the distribution of expression values? (5 pts)
