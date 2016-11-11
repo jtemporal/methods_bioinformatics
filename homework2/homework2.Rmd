@@ -45,6 +45,4 @@ plot.mva(five.data, layout = mouse.setup, plot.type = 'n',
 ```
 
 ## 5. How do the 2 plots differ? What has lowess normalization done to the distribution of expression values? (5 pts)
-```{r}
-
-```
+A normalização fez com que os valores de expressão ficassem mais uniformmente distribuidos em torno do eixo traçado na linha zero. Enquanto os dados não normalizados tem uma janela maior de variação, alterando a linha desenahada que gira perto do -5.
