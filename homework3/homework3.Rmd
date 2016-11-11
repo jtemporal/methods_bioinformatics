@@ -14,3 +14,47 @@ output:
 ---
 \newpage
 
+## 1. Load the golub data training set in the multtest library. Also load Biobase and annotate libraries, if they are not loaded with the multtest library. (2.5 pts)
+```{r}
+
+```
+
+## 2. Cast the matrix to a data frame and label the gene names as numbers (e.g. “g1”,”g2”,etc). (2.5 pts)
+```{r}
+
+```
+
+## 3. Get the sample labels (see lecture notes) and set the sample labels to the data frame. (2.5 pts)
+```{r}
+
+```
+
+## 4. Use the t-test function in the lecture #7 notes and modify it to "wilcox.test" instead of "t.test".  Change the "$p.value" argument to "$statistic".  Assign the following arguments to the function: (2.5 pts)
+`exact=F`
+`alternative="two.sided"`
+`correct=T`
+Run the function on the first 100 genes of the data set and save it as "original.wmw.run"
+```{r}
+
+```
+
+## 5. Now write a for loop to iterate 50 times, where in each iteration, the columns of the data frame are shuffled (class labels mixed up), the WMW test is calculated on the first 100 genes, and the maximum test statistic (W) is saved in a list.  (15 pts)
+Hints:
+Use `sample(c(1:ncol(dat)),replace=F)` to sample the number of columns
+Subset the data frame with these new column indices and call it something different
+Get the maximum test statistic across all genes with `max()`
+Create an empty list like this: `list <- NULL`
+To add to the same list, do the following for each iteration: `list <- c(list,new.item)`
+```{r}
+
+```
+
+## 6. Once you have the list of maximum test statistics, get the 60% value test statistic. Hint: use `quantile()`.  Subset the original.wmw.run list of values with only those that have a higher test statistic than the 60% value that you calculated.  Print the genes out. (5 pts)
+```{r}
+
+```
+
+## 7. Plot a histogram of the test statistic values. (5 pts)
+```{r}
+
+```
